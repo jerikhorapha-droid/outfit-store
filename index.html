@@ -10,10 +10,8 @@
   body { font-family: 'Inter', sans-serif; background: #f5f5f5; min-height: 100vh; }
 
   header {
-    background: #fff;
-    padding: 20px 16px 16px;
-    text-align: center;
-    border-bottom: 1px solid #eee;
+    background: #fff; padding: 20px 16px 16px;
+    text-align: center; border-bottom: 1px solid #eee;
     position: sticky; top: 0; z-index: 10;
   }
   header h1 { font-size: 20px; font-weight: 700; color: #111; }
@@ -23,11 +21,9 @@
   .search-wrap input {
     width: 100%; padding: 11px 16px 11px 40px;
     background: #f5f5f5; border: none; border-radius: 12px;
-    font-size: 14px; font-family: 'Inter', sans-serif; color: #111;
-    outline: none;
+    font-size: 14px; font-family: 'Inter', sans-serif; color: #111; outline: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833zm-5.242 1.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: 14px center;
+    background-repeat: no-repeat; background-position: 14px center;
   }
   .search-wrap input::placeholder { color: #aaa; }
 
@@ -46,8 +42,7 @@
   .tab.active { background: #111; color: #fff; border-color: #111; }
 
   .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: grid; grid-template-columns: repeat(2, 1fr);
     gap: 10px; padding: 12px;
   }
   @media(min-width: 480px) { .grid { grid-template-columns: repeat(3, 1fr); } }
@@ -65,10 +60,7 @@
     display: flex; align-items: center; justify-content: center; font-size: 42px;
   }
   .card-body { padding: 10px 10px 4px; }
-  .badge {
-    display: inline-block; font-size: 10px; padding: 2px 8px;
-    border-radius: 10px; margin-bottom: 5px; font-weight: 600;
-  }
+  .badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 10px; margin-bottom: 5px; font-weight: 600; }
   .badge-hot { background: #fff0f0; color: #e03131; }
   .badge-new { background: #f0fff4; color: #2f9e44; }
   .badge-sale { background: #fff9db; color: #e67700; }
@@ -77,14 +69,12 @@
     display: block; margin: 0 10px 10px; padding: 9px;
     text-align: center; background: #111; color: #fff;
     border-radius: 10px; font-size: 12px; font-weight: 600;
-    text-decoration: none; font-family: 'Inter', sans-serif;
-    transition: background 0.15s;
+    text-decoration: none; font-family: 'Inter', sans-serif; transition: background 0.15s;
   }
   .card-btn:hover { background: #333; }
 
   .collection-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: grid; grid-template-columns: repeat(2, 1fr);
     gap: 10px; padding: 12px;
   }
   @media(min-width: 480px) { .collection-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -92,7 +82,7 @@
   .collection-card {
     background: #fff; border-radius: 14px; overflow: hidden;
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+    transition: transform 0.15s, box-shadow 0.15s;
   }
   .collection-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
   .collection-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #f0f0f0; display: block; }
@@ -103,7 +93,6 @@
   }
   .collection-body { padding: 10px 12px 4px; }
   .collection-name { font-size: 13px; font-weight: 600; color: #111; margin-bottom: 3px; }
-  .collection-count { font-size: 11px; color: #999; margin-bottom: 4px; }
   .collection-btn {
     display: block; margin: 8px 12px 12px; padding: 8px;
     text-align: center; background: #111; color: #fff;
@@ -126,6 +115,14 @@
   .detail-header h2 { font-size: 16px; font-weight: 700; color: #111; }
   .detail-header p { font-size: 13px; color: #888; margin-top: 3px; }
 
+  .loading { text-align: center; padding: 4rem 1rem; color: #aaa; font-size: 14px; }
+  .loading-spinner {
+    width: 32px; height: 32px; border: 3px solid #eee;
+    border-top-color: #111; border-radius: 50%;
+    animation: spin 0.8s linear infinite; margin: 0 auto 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
   .empty { grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: #aaa; font-size: 14px; }
   .count { font-size: 12px; color: #999; padding: 6px 16px 0; background: #f5f5f5; }
 
@@ -139,13 +136,10 @@
 <body>
 
 <header>
-  <!-- ✏️ GANTI: nama toko lo -->
   <h1>JJ Store 🛍️</h1>
-  <!-- ✏️ GANTI: tagline lo -->
   <p>Temukan outfit favoritmu di sini 🔥</p>
 </header>
 
-<!-- VIEW UTAMA -->
 <div id="mainView">
   <div style="background:#fff">
     <div class="search-wrap">
@@ -163,10 +157,14 @@
     </div>
   </div>
   <p class="count" id="countText"></p>
-  <div id="cardGrid"></div>
+  <div id="cardGrid">
+    <div class="loading">
+      <div class="loading-spinner"></div>
+      Memuat produk...
+    </div>
+  </div>
 </div>
 
-<!-- VIEW DETAIL KOLEKSI -->
 <div id="detailView" class="detail-view">
   <div class="back-btn" onclick="backToMain()">← Kembali</div>
   <div class="detail-header">
@@ -177,111 +175,53 @@
 </div>
 
 <footer>
-  <!-- ✏️ GANTI: nama akun TikTok lo -->
   Semua produk tersedia di TikTok Shop · @jerikho.rapha
 </footer>
 
 <script>
-// ================================================================
-// ✏️ DAFTAR PRODUK BIASA
-// tag: casual / streetwear / formal / oversize / korea / aksesoris
-// badge: hot / new / sale / "" (kosong = tidak ada badge)
-// image: URL foto dari imgbb (Direct Link), kosongkan "" pakai emoji
-// ================================================================
-const products = [
+// ID Spreadsheet Google Sheets lo
+const SHEET_ID = '1YY3K03FckR0faL1-M2X-wb2EdAzNGNYvi-N6y6XGmTQ';
+const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
 
-  {
-    id: 1,
-    name: "Kaos F1 Premium",
-    tag: "oversize",
-    badge: "hot",
-    image: "",
-    emoji: "👕",
-    link: "GANTI_LINK_AFFILIATE"
-  },
-
-  {
-    id: 2,
-    name: "Celana Cargo Streetwear",
-    tag: "streetwear",
-    badge: "new",
-    image: "",
-    emoji: "👖",
-    link: "GANTI_LINK_AFFILIATE"
-  },
-
-  {
-    id: 3,
-    name: "Kemeja Casual Polos",
-    tag: "casual",
-    badge: "",
-    image: "",
-    emoji: "👔",
-    link: "GANTI_LINK_AFFILIATE"
-  },
-
-  // ✏️ TAMBAH PRODUK BARU — copy blok ini dan isi datanya:
-  // {
-  //   id: 4,
-  //   name: "Nama Produk",
-  //   tag: "casual",
-  //   badge: "new",
-  //   image: "",
-  //   emoji: "👗",
-  //   link: "https://vt.tiktok.com/XXXXX/"
-  // },
-
-];
-
-// ================================================================
-// ✏️ DAFTAR KOLEKSI / SET OUTFIT
-// Setiap koleksi punya cover + daftar produk di dalamnya
-// Klik "Lihat Koleksi" → masuk halaman detail produk set-nya
-// ================================================================
-const collections = [
-
-  {
-    id: "col1",
-    name: "Set Casual Vol.1",
-    desc: "Kombinasi outfit casual sehari-hari",
-    image: "",
-    emoji: "👕",
-    items: [
-      { id:"c1a", name:"Kaos Oversize Hitam", badge:"hot", image:"", emoji:"👕", link:"GANTI_LINK_AFFILIATE" },
-      { id:"c1b", name:"Celana Chino Cream", badge:"", image:"", emoji:"👖", link:"GANTI_LINK_AFFILIATE" },
-      { id:"c1c", name:"Tote Bag Kanvas", badge:"new", image:"", emoji:"👜", link:"GANTI_LINK_AFFILIATE" },
-    ]
-  },
-
-  {
-    id: "col2",
-    name: "Set Korean Look Vol.1",
-    desc: "Vibes Korea yang clean dan kece",
-    image: "",
-    emoji: "🧥",
-    items: [
-      { id:"c2a", name:"Cardigan Knit Korea", badge:"new", image:"", emoji:"🧥", link:"GANTI_LINK_AFFILIATE" },
-      { id:"c2b", name:"Rok Mini Pleated", badge:"", image:"", emoji:"👗", link:"GANTI_LINK_AFFILIATE" },
-    ]
-  },
-
-  // ✏️ TAMBAH KOLEKSI BARU — copy blok ini:
-  // {
-  //   id: "col3",
-  //   name: "Nama Koleksi",
-  //   desc: "Deskripsi singkat koleksi",
-  //   image: "",
-  //   emoji: "🧢",
-  //   items: [
-  //     { id:"c3a", name:"Nama Produk 1", badge:"", image:"", emoji:"👕", link:"https://vt.tiktok.com/XXXXX/" },
-  //     { id:"c3b", name:"Nama Produk 2", badge:"new", image:"", emoji:"👖", link:"https://vt.tiktok.com/XXXXX/" },
-  //   ]
-  // },
-
-];
-// ================================================================
-
+let allData = [];
 let currentTab = 'all';
+
+async function loadData() {
+  try {
+    const res = await fetch(CSV_URL);
+    const text = await res.text();
+    const rows = text.trim().split('\n').slice(1);
+    allData = rows.map((row, i) => {
+      const cols = parseCSV(row);
+      return {
+        id: i,
+        name: cols[0] || '',
+        tag: (cols[1] || '').trim().toLowerCase(),
+        badge: cols[2] || '',
+        image: cols[3] || '',
+        emoji: cols[4] || '👕',
+        link: cols[5] || '',
+        type: (cols[6] || 'product').trim().toLowerCase(),
+      };
+    }).filter(p => p.name);
+    render();
+  } catch(e) {
+    document.getElementById('cardGrid').innerHTML =
+      '<div class="loading">⚠️ Gagal memuat produk.<br>Coba refresh halaman.</div>';
+  }
+}
+
+function parseCSV(row) {
+  const result = []; let current = ''; let inQuotes = false;
+  for (let i = 0; i < row.length; i++) {
+    const ch = row[i];
+    if (ch === '"') { inQuotes = !inQuotes; }
+    else if (ch === ',' && !inQuotes) { result.push(current.trim()); current = ''; }
+    else { current += ch; }
+  }
+  result.push(current.trim());
+  return result;
+}
 
 function setTab(tab, el) {
   currentTab = tab;
@@ -308,21 +248,22 @@ function render() {
   const search = document.getElementById('searchInput').value.toLowerCase();
   const grid = document.getElementById('cardGrid');
   const countEl = document.getElementById('countText');
+  const collections = allData.filter(p => p.type === 'collection');
+  const products = allData.filter(p => p.type === 'product');
 
   if (currentTab === 'koleksi') {
     countEl.textContent = collections.length + ' koleksi tersedia';
     grid.className = 'collection-grid';
-    grid.innerHTML = collections.map(col => `
+    grid.innerHTML = collections.length ? collections.map(col => `
       <div class="collection-card">
         ${col.image ? `<img class="collection-img" src="${col.image}" alt="${col.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
         <div class="collection-img-placeholder" ${col.image ? 'style="display:none"' : ''}>${col.emoji}</div>
         <div class="collection-body">
           <div class="collection-name">${col.name}</div>
-          <div class="collection-count">${col.items.length} produk</div>
         </div>
-        <button class="collection-btn" onclick="openCollection('${col.id}')">Lihat Koleksi →</button>
+        <button class="collection-btn" onclick="openCollection(${col.id})">Lihat Koleksi →</button>
       </div>
-    `).join('');
+    `).join('') : '<div class="empty">Belum ada koleksi</div>';
     return;
   }
 
@@ -332,21 +273,24 @@ function render() {
     const matchSearch = !search || p.name.toLowerCase().includes(search);
     return matchTab && matchSearch;
   });
-
   countEl.textContent = filtered.length + ' produk ditemukan';
   grid.innerHTML = filtered.length
     ? filtered.map(p => renderCard(p)).join('')
-    : '<div class="empty">😅 Produk tidak ditemukan<br>Coba kata kunci lain</div>';
+    : '<div class="empty">😅 Produk tidak ditemukan</div>';
 }
 
 function openCollection(id) {
-  const col = collections.find(c => c.id === id);
+  const col = allData.find(c => c.id === id);
   if (!col) return;
   document.getElementById('mainView').style.display = 'none';
   document.getElementById('detailView').style.display = 'block';
   document.getElementById('detailTitle').textContent = col.name;
-  document.getElementById('detailDesc').textContent = col.desc;
-  document.getElementById('detailGrid').innerHTML = col.items.map(p => renderCard(p)).join('');
+  document.getElementById('detailDesc').textContent = 'Produk dalam koleksi ini';
+  // Produk dalam koleksi = produk dengan tag sama dengan tag koleksi
+  const items = allData.filter(p => p.type === 'product' && p.tag === col.tag);
+  document.getElementById('detailGrid').innerHTML = items.length
+    ? items.map(p => renderCard(p)).join('')
+    : '<div class="empty">Belum ada produk di koleksi ini</div>';
   window.scrollTo(0, 0);
 }
 
@@ -356,7 +300,7 @@ function backToMain() {
   window.scrollTo(0, 0);
 }
 
-render();
+loadData();
 </script>
 </body>
 </html>
