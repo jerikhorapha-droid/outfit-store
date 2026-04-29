@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jerikho Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #f5f5f5; min-height: 100vh; }
+
+  header {
+    background: #fff;
+    padding: 20px 16px 16px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    position: sticky; top: 0; z-index: 10;
+  }
+  header h1 { font-size: 20px; font-weight: 700; color: #111; }
+  header p { font-size: 13px; color: #888; margin-top: 3px; }
+
+  .search-wrap { padding: 14px 16px 8px; background: #fff; }
+  .search-wrap input {
+    width: 100%; padding: 11px 16px 11px 40px;
+    background: #f5f5f5; border: none; border-radius: 12px;
+    font-size: 14px; font-family: 'Inter', sans-serif; color: #111;
+    outline: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833zm-5.242 1.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 14px center;
+  }
+  .search-wrap input::placeholder { color: #aaa; }
+
+  .tabs {
+    display: flex; gap: 8px; padding: 10px 16px;
+    overflow-x: auto; scrollbar-width: none;
+    background: #fff; border-bottom: 1px solid #eee;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    white-space: nowrap; padding: 7px 16px; border-radius: 20px;
+    font-size: 13px; font-weight: 500;
+    border: 1.5px solid #e0e0e0; background: #fff; color: #666;
+    cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif;
+  }
+  .tab.active { background: #111; color: #fff; border-color: #111; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; padding: 12px;
+  }
+  @media(min-width: 480px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media(min-width: 768px) {
+    .grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .card {
+    background: #fff; border-radius: 14px;
+    overflow: hidden; cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .card-img {
+    width: 100%; aspect-ratio: 1/1;
+    object-fit: cover; background: #f0f0f0;
+    display: block;
+  }
+  .card-img-placeholder {
+    width: 100%; aspect-ratio: 1/1;
+    background: #f0f0f0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 42px;
+  }
+  .card-body { padding: 10px 10px 4px; }
+  .badge {
+    display: inline-block; font-size: 10px; padding: 2px 8px;
+    border-radius: 10px; margin-bottom: 5px; font-weight: 600;
+  }
+  .badge-hot { background: #fff0f0; color: #e03131; }
+  .badge-new { background: #f0fff4; color: #2f9e44; }
+  .badge-sale { background: #fff9db; color: #e67700; }
+  .card-name { font-size: 13px; font-weight: 500; color: #111; line-height: 1.35; margin-bottom: 5px; }
+  .card-price { font-size: 13px; font-weight: 700; color: #e03131; }
+  .card-original { font-size: 11px; color: #aaa; text-decoration: line-through; margin-left: 5px; font-weight: 400; }
+  .card-btn {
+    display: block; margin: 8px 10px 10px; padding: 9px;
+    text-align: center; background: #111; color: #fff;
+    border-radius: 10px; font-size: 12px; font-weight: 600;
+    text-decoration: none; font-family: 'Inter', sans-serif;
+    transition: background 0.15s;
+  }
+  .card-btn:hover { background: #333; }
+
+  .empty {
+    grid-column: 1/-1; text-align: center;
+    padding: 4rem 1rem; color: #aaa; font-size: 14px;
+  }
+
+  footer {
+    text-align: center; padding: 1.5rem 1rem;
+    font-size: 11px; color: #bbb;
+    border-top: 1px solid #eee; background: #fff; margin-top: 8px;
+  }
+
+  .count {
+    font-size: 12px; color: #999; padding: 4px 16px 0;
+    background: #f5f5f5;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <!-- ✏️ GANTI: nama toko lo -->
+  <h1>Jerikho Store 🛍️</h1>
+  <!-- ✏️ GANTI: tagline lo -->
+  <p>Outfit kece langsung dari TikTok Shop</p>
+</header>
+
+<div style="background:#fff">
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Cari produk..." oninput="render()">
+  </div>
+  <div class="tabs">
+    <div class="tab active" onclick="setTab('all',this)">Semua</div>
+    <div class="tab" onclick="setTab('casual',this)">Casual</div>
+    <div class="tab" onclick="setTab('streetwear',this)">Streetwear</div>
+    <div class="tab" onclick="setTab('formal',this)">Formal</div>
+    <div class="tab" onclick="setTab('oversize',this)">Oversize</div>
+    <div class="tab" onclick="setTab('korea',this)">Korea</div>
+    <div class="tab" onclick="setTab('set',this)">Set Outfit</div>
+    <div class="tab" onclick="setTab('aksesoris',this)">Aksesoris</div>
+  </div>
+</div>
+
+<p class="count" id="countText"></p>
+<div class="grid" id="cardGrid"></div>
+
+<footer>
+  <!-- ✏️ GANTI: nama akun TikTok lo -->
+  Semua produk tersedia di TikTok Shop · @jerikho.rapha
+</footer>
+
+<script>
+// ================================================================
+// ✏️ DAFTAR PRODUK — EDIT DI SINI UNTUK TAMBAH/HAPUS PRODUK
+// ================================================================
+const products = [
+
+  {
+    id: 1,
+    name: "Kemeja Oversize Polos",
+    tag: "oversize",
+    badge: "hot",
+    image: "",           // ✏️ Paste URL foto produk di sini (kosongkan pakai emoji)
+    emoji: "👔",          // ✏️ Emoji (dipakai kalau image kosong)
+    price: "Rp 89.000",
+    original: "Rp 120.000",
+    link: "GANTI_LINK_AFFILIATE_1"  // ✏️ Paste link affiliate TikTok Shop
+  },
+
+  {
+    id: 2,
+    name: "Celana Cargo Streetwear",
+    tag: "streetwear",
+    badge: "new",
+    image: "",
+    emoji: "👖",
+    price: "Rp 145.000",
+    original: "Rp 180.000",
+    link: "GANTI_LINK_AFFILIATE_2"
+  },
+
+  {
+    id: 3,
+    name: "Kaos Polos Premium",
+    tag: "casual",
+    badge: "",
+    image: "",
+    emoji: "👕",
+    price: "Rp 49.000",
+    original: "",
+    link: "GANTI_LINK_AFFILIATE_3"
+  },
+
+  {
+    id: 4,
+    name: "Set Korean Look",
+    tag: "korea",
+    badge: "hot",
+    image: "",
+    emoji: "🧥",
+    price: "Rp 210.000",
+    original: "Rp 280.000",
+    link: "GANTI_LINK_AFFILIATE_4"
+  },
+
+  {
+    id: 5,
+    name: "Blazer Formal Slim Fit",
+    tag: "formal",
+    badge: "new",
+    image: "",
+    emoji: "🎩",
+    price: "Rp 175.000",
+    original: "",
+    link: "GANTI_LINK_AFFILIATE_5"
+  },
+
+  // ✏️ TAMBAH PRODUK BARU: copy blok di bawah, hapus // di depannya
+  // {
+  //   id: 6,
+  //   name: "Nama Produk",
+  //   tag: "casual",        // casual / streetwear / formal / oversize / korea / set / aksesoris
+  //   badge: "new",         // hot / new / sale / "" (kosong)
+  //   image: "",            // URL foto produk (kosongkan = pakai emoji)
+  //   emoji: "👗",
+  //   price: "Rp 99.000",
+  //   original: "",         // harga coret, kosongkan kalau tidak ada
+  //   link: "https://vt.tiktok.com/XXXXX/"
+  // },
+
+];
+// ================================================================
+
+let currentTab = 'all';
+
+function setTab(tab, el) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  render();
+}
+
+function render() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const grid = document.getElementById('cardGrid');
+  const countEl = document.getElementById('countText');
+
+  const filtered = products.filter(p => {
+    const matchTab = currentTab === 'all' || p.tag === currentTab;
+    const matchSearch = !search || p.name.toLowerCase().includes(search);
+    return matchTab && matchSearch;
+  });
+
+  countEl.textContent = filtered.length + ' produk ditemukan';
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty">😅 Produk tidak ditemukan<br>Coba kata kunci lain</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => `
+    <div class="card">
+      ${p.image
+        ? `<img class="card-img" src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+        : ''}
+      <div class="card-img-placeholder" ${p.image ? 'style="display:none"' : ''}>${p.emoji}</div>
+      <div class="card-body">
+        ${p.badge ? `<div class="badge badge-${p.badge}">${p.badge==='hot'?'🔥 Hot':p.badge==='new'?'✨ Baru':'🏷️ Sale'}</div>` : ''}
+        <div class="card-name">${p.name}</div>
+        <div>
+          <span class="card-price">${p.price}</span>
+          ${p.original ? `<span class="card-original">${p.original}</span>` : ''}
+        </div>
+      </div>
+      <a class="card-btn" href="${p.link}" target="_blank">Beli di TikTok Shop →</a>
+    </div>
+  `).join('');
+}
+
+render();
+</script>
+</body>
+</html>
