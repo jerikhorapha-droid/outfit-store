@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JJ STORE</title>
+<title>JJ Store</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,30 +50,19 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 10px; padding: 12px;
   }
-  @media(min-width: 480px) {
-    .grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media(min-width: 768px) {
-    .grid { grid-template-columns: repeat(4, 1fr); }
-  }
+  @media(min-width: 480px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  @media(min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); } }
 
   .card {
-    background: #fff; border-radius: 14px;
-    overflow: hidden; cursor: pointer;
+    background: #fff; border-radius: 14px; overflow: hidden;
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     transition: transform 0.15s, box-shadow 0.15s;
   }
   .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-  .card-img {
-    width: 100%; aspect-ratio: 1/1;
-    object-fit: cover; background: #f0f0f0;
-    display: block;
-  }
+  .card-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #f0f0f0; display: block; }
   .card-img-placeholder {
-    width: 100%; aspect-ratio: 1/1;
-    background: #f0f0f0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 42px;
+    width: 100%; aspect-ratio: 1/1; background: #f0f0f0;
+    display: flex; align-items: center; justify-content: center; font-size: 42px;
   }
   .card-body { padding: 10px 10px 4px; }
   .badge {
@@ -83,11 +72,9 @@
   .badge-hot { background: #fff0f0; color: #e03131; }
   .badge-new { background: #f0fff4; color: #2f9e44; }
   .badge-sale { background: #fff9db; color: #e67700; }
-  .card-name { font-size: 13px; font-weight: 500; color: #111; line-height: 1.35; margin-bottom: 5px; }
-  .card-price { font-size: 13px; font-weight: 700; color: #e03131; }
-  .card-original { font-size: 11px; color: #aaa; text-decoration: line-through; margin-left: 5px; font-weight: 400; }
+  .card-name { font-size: 13px; font-weight: 500; color: #111; line-height: 1.35; margin-bottom: 8px; }
   .card-btn {
-    display: block; margin: 8px 10px 10px; padding: 9px;
+    display: block; margin: 0 10px 10px; padding: 9px;
     text-align: center; background: #111; color: #fff;
     border-radius: 10px; font-size: 12px; font-weight: 600;
     text-decoration: none; font-family: 'Inter', sans-serif;
@@ -95,20 +82,57 @@
   }
   .card-btn:hover { background: #333; }
 
-  .empty {
-    grid-column: 1/-1; text-align: center;
-    padding: 4rem 1rem; color: #aaa; font-size: 14px;
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; padding: 12px;
   }
+  @media(min-width: 480px) { .collection-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .collection-card {
+    background: #fff; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .collection-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .collection-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #f0f0f0; display: block; }
+  .collection-img-placeholder {
+    width: 100%; aspect-ratio: 1/1;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    display: flex; align-items: center; justify-content: center; font-size: 48px;
+  }
+  .collection-body { padding: 10px 12px 4px; }
+  .collection-name { font-size: 13px; font-weight: 600; color: #111; margin-bottom: 3px; }
+  .collection-count { font-size: 11px; color: #999; margin-bottom: 4px; }
+  .collection-btn {
+    display: block; margin: 8px 12px 12px; padding: 8px;
+    text-align: center; background: #111; color: #fff;
+    border-radius: 10px; font-size: 12px; font-weight: 600;
+    font-family: 'Inter', sans-serif; cursor: pointer; border: none;
+    transition: background 0.15s; width: calc(100% - 24px);
+  }
+  .collection-btn:hover { background: #333; }
+
+  .detail-view { display: none; }
+  .back-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 14px 16px; background: #fff;
+    border-bottom: 1px solid #eee; cursor: pointer;
+    font-size: 14px; font-weight: 500; color: #111;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .back-btn:hover { background: #f9f9f9; }
+  .detail-header { padding: 14px 16px; background: #fff; border-bottom: 1px solid #eee; }
+  .detail-header h2 { font-size: 16px; font-weight: 700; color: #111; }
+  .detail-header p { font-size: 13px; color: #888; margin-top: 3px; }
+
+  .empty { grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: #aaa; font-size: 14px; }
+  .count { font-size: 12px; color: #999; padding: 6px 16px 0; background: #f5f5f5; }
 
   footer {
     text-align: center; padding: 1.5rem 1rem;
     font-size: 11px; color: #bbb;
     border-top: 1px solid #eee; background: #fff; margin-top: 8px;
-  }
-
-  .count {
-    font-size: 12px; color: #999; padding: 4px 16px 0;
-    background: #f5f5f5;
   }
 </style>
 </head>
@@ -116,29 +140,41 @@
 
 <header>
   <!-- ✏️ GANTI: nama toko lo -->
-  <h1>JJ STORE 🛍️</h1>
+  <h1>JJ Store 🛍️</h1>
   <!-- ✏️ GANTI: tagline lo -->
   <p>Temukan outfit favoritmu di sini 🔥</p>
 </header>
 
-<div style="background:#fff">
-  <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="Cari produk..." oninput="render()">
+<!-- VIEW UTAMA -->
+<div id="mainView">
+  <div style="background:#fff">
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Cari produk..." oninput="render()">
+    </div>
+    <div class="tabs">
+      <div class="tab active" onclick="setTab('all',this)">Semua</div>
+      <div class="tab" onclick="setTab('casual',this)">Casual</div>
+      <div class="tab" onclick="setTab('streetwear',this)">Streetwear</div>
+      <div class="tab" onclick="setTab('formal',this)">Formal</div>
+      <div class="tab" onclick="setTab('oversize',this)">Oversize</div>
+      <div class="tab" onclick="setTab('korea',this)">Korea</div>
+      <div class="tab" onclick="setTab('koleksi',this)">🗂️ Koleksi</div>
+      <div class="tab" onclick="setTab('aksesoris',this)">Aksesoris</div>
+    </div>
   </div>
-  <div class="tabs">
-    <div class="tab active" onclick="setTab('all',this)">Semua</div>
-    <div class="tab" onclick="setTab('casual',this)">Casual</div>
-    <div class="tab" onclick="setTab('streetwear',this)">Streetwear</div>
-    <div class="tab" onclick="setTab('formal',this)">Formal</div>
-    <div class="tab" onclick="setTab('oversize',this)">Oversize</div>
-    <div class="tab" onclick="setTab('korea',this)">Korea</div>
-    <div class="tab" onclick="setTab('set',this)">Set Outfit</div>
-    <div class="tab" onclick="setTab('aksesoris',this)">Aksesoris</div>
-  </div>
+  <p class="count" id="countText"></p>
+  <div id="cardGrid"></div>
 </div>
 
-<p class="count" id="countText"></p>
-<div class="grid" id="cardGrid"></div>
+<!-- VIEW DETAIL KOLEKSI -->
+<div id="detailView" class="detail-view">
+  <div class="back-btn" onclick="backToMain()">← Kembali</div>
+  <div class="detail-header">
+    <h2 id="detailTitle"></h2>
+    <p id="detailDesc"></p>
+  </div>
+  <div class="grid" id="detailGrid"></div>
+</div>
 
 <footer>
   <!-- ✏️ GANTI: nama akun TikTok lo -->
@@ -147,7 +183,10 @@
 
 <script>
 // ================================================================
-// ✏️ DAFTAR PRODUK — EDIT DI SINI UNTUK TAMBAH/HAPUS PRODUK
+// ✏️ DAFTAR PRODUK BIASA
+// tag: casual / streetwear / formal / oversize / korea / aksesoris
+// badge: hot / new / sale / "" (kosong = tidak ada badge)
+// image: URL foto dari imgbb (Direct Link), kosongkan "" pakai emoji
 // ================================================================
 const products = [
 
@@ -156,11 +195,9 @@ const products = [
     name: "Kaos F1 Premium",
     tag: "oversize",
     badge: "hot",
-    image: "https://i.ibb.co/zVY21Cjd/Ultrarealistic-indoor-product-photography-for-a-ti-delpmaspu-2.jpg",          // ✏️ Paste URL foto produk di sini (kosongkan pakai emoji)
-    emoji: "👔",          // ✏️ Emoji (dipakai kalau image kosong)
-    price: "Rp 89.000",
-    original: "Rp 120.000",
-    link: "https://vt.tokopedia.com/t/ZS9N4dENTnqkn-AB3q0/t.tokopedia.com/t/ZS9N4e73gPEud-sUKBg/"  // ✏️ Paste link affiliate TikTok Shop
+    image: "",
+    emoji: "👕",
+    link: "GANTI_LINK_AFFILIATE"
   },
 
   {
@@ -170,58 +207,75 @@ const products = [
     badge: "new",
     image: "",
     emoji: "👖",
-    price: "Rp 145.000",
-    original: "Rp 180.000",
-    link: "GANTI_LINK_AFFILIATE_2"
+    link: "GANTI_LINK_AFFILIATE"
   },
 
   {
     id: 3,
-    name: "Kaos Polos Premium",
+    name: "Kemeja Casual Polos",
     tag: "casual",
     badge: "",
     image: "",
+    emoji: "👔",
+    link: "GANTI_LINK_AFFILIATE"
+  },
+
+  // ✏️ TAMBAH PRODUK BARU — copy blok ini dan isi datanya:
+  // {
+  //   id: 4,
+  //   name: "Nama Produk",
+  //   tag: "casual",
+  //   badge: "new",
+  //   image: "",
+  //   emoji: "👗",
+  //   link: "https://vt.tiktok.com/XXXXX/"
+  // },
+
+];
+
+// ================================================================
+// ✏️ DAFTAR KOLEKSI / SET OUTFIT
+// Setiap koleksi punya cover + daftar produk di dalamnya
+// Klik "Lihat Koleksi" → masuk halaman detail produk set-nya
+// ================================================================
+const collections = [
+
+  {
+    id: "col1",
+    name: "Set Casual Vol.1",
+    desc: "Kombinasi outfit casual sehari-hari",
+    image: "",
     emoji: "👕",
-    price: "Rp 49.000",
-    original: "",
-    link: "GANTI_LINK_AFFILIATE_3"
+    items: [
+      { id:"c1a", name:"Kaos Oversize Hitam", badge:"hot", image:"", emoji:"👕", link:"GANTI_LINK_AFFILIATE" },
+      { id:"c1b", name:"Celana Chino Cream", badge:"", image:"", emoji:"👖", link:"GANTI_LINK_AFFILIATE" },
+      { id:"c1c", name:"Tote Bag Kanvas", badge:"new", image:"", emoji:"👜", link:"GANTI_LINK_AFFILIATE" },
+    ]
   },
 
   {
-    id: 4,
-    name: "Set Korean Look",
-    tag: "korea",
-    badge: "hot",
+    id: "col2",
+    name: "Set Korean Look Vol.1",
+    desc: "Vibes Korea yang clean dan kece",
     image: "",
     emoji: "🧥",
-    price: "Rp 210.000",
-    original: "Rp 280.000",
-    link: "GANTI_LINK_AFFILIATE_4"
+    items: [
+      { id:"c2a", name:"Cardigan Knit Korea", badge:"new", image:"", emoji:"🧥", link:"GANTI_LINK_AFFILIATE" },
+      { id:"c2b", name:"Rok Mini Pleated", badge:"", image:"", emoji:"👗", link:"GANTI_LINK_AFFILIATE" },
+    ]
   },
 
-  {
-    id: 5,
-    name: "Blazer Formal Slim Fit",
-    tag: "formal",
-    badge: "new",
-    image: "",
-    emoji: "🎩",
-    price: "Rp 175.000",
-    original: "",
-    link: "GANTI_LINK_AFFILIATE_5"
-  },
-
-  // ✏️ TAMBAH PRODUK BARU: copy blok di bawah, hapus // di depannya
+  // ✏️ TAMBAH KOLEKSI BARU — copy blok ini:
   // {
-  //   id: 6,
-  //   name: "Nama Produk",
-  //   tag: "casual",        // casual / streetwear / formal / oversize / korea / set / aksesoris
-  //   badge: "new",         // hot / new / sale / "" (kosong)
-  //   image: "",            // URL foto produk (kosongkan = pakai emoji)
-  //   emoji: "👗",
-  //   price: "Rp 99.000",
-  //   original: "",         // harga coret, kosongkan kalau tidak ada
-  //   link: "https://vt.tiktok.com/XXXXX/"
+  //   id: "col3",
+  //   name: "Nama Koleksi",
+  //   desc: "Deskripsi singkat koleksi",
+  //   image: "",
+  //   emoji: "🧢",
+  //   items: [
+  //     { id:"c3a", name:"Nama Produk 1", badge:"", image:"", emoji:"👕", link:"https://vt.tiktok.com/XXXXX/" },
+  //     { id:"c3b", name:"Nama Produk 2", badge:"new", image:"", emoji:"👖", link:"https://vt.tiktok.com/XXXXX/" },
+  //   ]
   // },
 
 ];
@@ -236,11 +290,43 @@ function setTab(tab, el) {
   render();
 }
 
+function renderCard(p) {
+  return `
+    <div class="card">
+      ${p.image ? `<img class="card-img" src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
+      <div class="card-img-placeholder" ${p.image ? 'style="display:none"' : ''}>${p.emoji}</div>
+      <div class="card-body">
+        ${p.badge ? `<div class="badge badge-${p.badge}">${p.badge==='hot'?'🔥 Hot':p.badge==='new'?'✨ Baru':'🏷️ Sale'}</div>` : ''}
+        <div class="card-name">${p.name}</div>
+      </div>
+      <a class="card-btn" href="${p.link}" target="_blank">Beli di TikTok Shop →</a>
+    </div>
+  `;
+}
+
 function render() {
   const search = document.getElementById('searchInput').value.toLowerCase();
   const grid = document.getElementById('cardGrid');
   const countEl = document.getElementById('countText');
 
+  if (currentTab === 'koleksi') {
+    countEl.textContent = collections.length + ' koleksi tersedia';
+    grid.className = 'collection-grid';
+    grid.innerHTML = collections.map(col => `
+      <div class="collection-card">
+        ${col.image ? `<img class="collection-img" src="${col.image}" alt="${col.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
+        <div class="collection-img-placeholder" ${col.image ? 'style="display:none"' : ''}>${col.emoji}</div>
+        <div class="collection-body">
+          <div class="collection-name">${col.name}</div>
+          <div class="collection-count">${col.items.length} produk</div>
+        </div>
+        <button class="collection-btn" onclick="openCollection('${col.id}')">Lihat Koleksi →</button>
+      </div>
+    `).join('');
+    return;
+  }
+
+  grid.className = 'grid';
   const filtered = products.filter(p => {
     const matchTab = currentTab === 'all' || p.tag === currentTab;
     const matchSearch = !search || p.name.toLowerCase().includes(search);
@@ -248,29 +334,26 @@ function render() {
   });
 
   countEl.textContent = filtered.length + ' produk ditemukan';
+  grid.innerHTML = filtered.length
+    ? filtered.map(p => renderCard(p)).join('')
+    : '<div class="empty">😅 Produk tidak ditemukan<br>Coba kata kunci lain</div>';
+}
 
-  if (!filtered.length) {
-    grid.innerHTML = '<div class="empty">😅 Produk tidak ditemukan<br>Coba kata kunci lain</div>';
-    return;
-  }
+function openCollection(id) {
+  const col = collections.find(c => c.id === id);
+  if (!col) return;
+  document.getElementById('mainView').style.display = 'none';
+  document.getElementById('detailView').style.display = 'block';
+  document.getElementById('detailTitle').textContent = col.name;
+  document.getElementById('detailDesc').textContent = col.desc;
+  document.getElementById('detailGrid').innerHTML = col.items.map(p => renderCard(p)).join('');
+  window.scrollTo(0, 0);
+}
 
-  grid.innerHTML = filtered.map(p => `
-    <div class="card">
-      ${p.image
-        ? `<img class="card-img" src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-        : ''}
-      <div class="card-img-placeholder" ${p.image ? 'style="display:none"' : ''}>${p.emoji}</div>
-      <div class="card-body">
-        ${p.badge ? `<div class="badge badge-${p.badge}">${p.badge==='hot'?'🔥 Hot':p.badge==='new'?'✨ Baru':'🏷️ Sale'}</div>` : ''}
-        <div class="card-name">${p.name}</div>
-        <div>
-          <span class="card-price">${p.price}</span>
-          ${p.original ? `<span class="card-original">${p.original}</span>` : ''}
-        </div>
-      </div>
-      <a class="card-btn" href="${p.link}" target="_blank">Beli di TikTok Shop →</a>
-    </div>
-  `).join('');
+function backToMain() {
+  document.getElementById('detailView').style.display = 'none';
+  document.getElementById('mainView').style.display = 'block';
+  window.scrollTo(0, 0);
 }
 
 render();
