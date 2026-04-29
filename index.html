@@ -64,6 +64,18 @@
   .badge-hot { background: #fff0f0; color: #e03131; }
   .badge-new { background: #f0fff4; color: #2f9e44; }
   .badge-sale { background: #fff9db; color: #e67700; }
+  .badge-limited { background: #f3f0ff; color: #6741d9; }
+  .badge-terlaris { background: #fff8e1; color: #f59f00; }
+  .badge-recommended { background: #e8f4fd; color: #1971c2; }
+  .badge-trending { background: #fff0f6; color: #c2255c; }
+  .badge-premium { background: #1a1a1a; color: #ffd700; }
+  .badge-exclusive { background: #1a1a1a; color: #fff; }
+  .badge-bonus { background: #e6fcf5; color: #0ca678; }
+  .badge-ongkir { background: #e8f5e9; color: #2e7d32; }
+  .badge-bestseller { background: #ffecd2; color: #d4380d; }
+  .badge-stiptis { background: #fff1f0; color: #cf1322; }
+  .badge-flashsale { background: #ff4d4f; color: #fff; }
+  .badge-collab { background: #e6f4ff; color: #096dd9; }
   .card-name { font-size: 13px; font-weight: 500; color: #111; line-height: 1.35; margin-bottom: 8px; }
   .card-btn {
     display: block; margin: 0 10px 10px; padding: 9px;
@@ -235,7 +247,23 @@ function renderCard(p) {
       ${p.image ? `<img class="card-img" src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
       <div class="card-img-placeholder" ${p.image ? 'style="display:none"' : ''}>${p.emoji}</div>
       <div class="card-body">
-        ${p.badge ? `<div class="badge badge-${p.badge}">${p.badge==='hot'?'🔥 Hot':p.badge==='new'?'✨ Baru':'🏷️ Sale'}</div>` : ''}
+        ${p.badge ? `<div class="badge badge-${p.badge}">${
+          p.badge==='hot'?'🔥 Hot':
+          p.badge==='new'?'✨ Baru':
+          p.badge==='sale'?'🏷️ Sale':
+          p.badge==='limited'?'⚡ Limited':
+          p.badge==='terlaris'?'🏆 Terlaris':
+          p.badge==='recommended'?'⭐ Recommended':
+          p.badge==='trending'?'🚀 Trending':
+          p.badge==='premium'?'💎 Premium':
+          p.badge==='exclusive'?'👑 Exclusive':
+          p.badge==='bonus'?'🎁 Bonus':
+          p.badge==='ongkir'?'🆓 Gratis Ongkir':
+          p.badge==='bestseller'?'💯 Best Seller':
+          p.badge==='stiptis'?'🔴 Stok Tipis':
+          p.badge==='flashsale'?'⏰ Flash Sale':
+          p.badge==='collab'?'🤝 Collab':p.badge
+        }</div>` : ''}
         <div class="card-name">${p.name}</div>
       </div>
       <a class="card-btn" href="${p.link}" target="_blank">Beli di TikTok Shop →</a>
