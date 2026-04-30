@@ -159,12 +159,13 @@
     </div>
     <div class="tabs">
       <div class="tab active" onclick="setTab('all',this)">Semua</div>
-      <div class="tab" onclick="setTab('casual',this)">Casual</div>
-      <div class="tab" onclick="setTab('streetwear',this)">Streetwear</div>
-      <div class="tab" onclick="setTab('formal',this)">Formal</div>
-      <div class="tab" onclick="setTab('oversize',this)">Oversize</div>
-      <div class="tab" onclick="setTab('korea',this)">Korea</div>
-      <div class="tab" onclick="setTab('koleksi',this)">🗂️ Koleksi</div>
+      <div class="tab" onclick="setTab('cosplay',this)">Cosplay</div>
+      <div class="tab" onclick="setTab('outfit-set',this)">Outfit Set</div>
+      <div class="tab" onclick="setTab('baju',this)">Baju</div>
+      <div class="tab" onclick="setTab('jacket',this)">Jacket</div>
+      <div class="tab" onclick="setTab('celana',this)">Celana</div>
+      <div class="tab" onclick="setTab('sepatu',this)">Sepatu</div>
+      <div class="tab" onclick="setTab('topi',this)">Topi</div>
       <div class="tab" onclick="setTab('aksesoris',this)">Aksesoris</div>
     </div>
   </div>
@@ -278,8 +279,8 @@ function render() {
   const collections = allData.filter(p => p.type === 'collection');
   const products = allData.filter(p => p.type === 'product');
 
-  if (currentTab === 'koleksi') {
-    countEl.textContent = collections.length + ' koleksi tersedia';
+  if (currentTab === 'outfit-set') {
+    countEl.textContent = collections.length + ' outfit set tersedia';
     grid.className = 'collection-grid';
     grid.innerHTML = collections.length ? collections.map(col => `
       <div class="collection-card">
@@ -288,9 +289,9 @@ function render() {
         <div class="collection-body">
           <div class="collection-name">${col.name}</div>
         </div>
-        <button class="collection-btn" onclick="openCollection(${col.id})">Lihat Koleksi →</button>
+        <button class="collection-btn" onclick="openCollection(${col.id})">Lihat Outfit Set →</button>
       </div>
-    `).join('') : '<div class="empty">Belum ada koleksi</div>';
+    `).join('') : '<div class="empty">Belum ada outfit set</div>';
     return;
   }
 
