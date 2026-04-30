@@ -279,10 +279,28 @@ function render() {
   const collections = allData.filter(p => p.type === 'collection');
   const products = allData.filter(p => p.type === 'product');
 
-  if (currentTab === 'outfit-set') {
-    countEl.textContent = collections.length + ' outfit set tersedia';
+  if (currentTab === 'cosplay') {
+    const cosplayCols = allData.filter(p => p.type === 'collection' && p.tag.includes('cosplay'));
+    countEl.textContent = cosplayCols.length + ' koleksi cosplay tersedia';
     grid.className = 'collection-grid';
-    grid.innerHTML = collections.length ? collections.map(col => `
+    grid.innerHTML = cosplayCols.length ? cosplayCols.map(col => `
+      <div class="collection-card">
+        ${col.image ? `<img class="collection-img" src="${col.image}" alt="${col.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
+        <div class="collection-img-placeholder" ${col.image ? 'style="display:none"' : ''}>${col.emoji}</div>
+        <div class="collection-body">
+          <div class="collection-name">${col.name}</div>
+        </div>
+        <button class="collection-btn" onclick="openCollection(${col.id})">Lihat Koleksi →</button>
+      </div>
+    `).join('') : '<div class="empty">Belum ada koleksi cosplay</div>';
+    return;
+  }
+
+  if (currentTab === 'outfit-set') {
+    const outfitCols = allData.filter(p => p.type === 'collection' && p.tag.includes('outfit'));
+    countEl.textContent = outfitCols.length + ' outfit set tersedia';
+    grid.className = 'collection-grid';
+    grid.innerHTML = outfitCols.length ? outfitCols.map(col => `
       <div class="collection-card">
         ${col.image ? `<img class="collection-img" src="${col.image}" alt="${col.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
         <div class="collection-img-placeholder" ${col.image ? 'style="display:none"' : ''}>${col.emoji}</div>
